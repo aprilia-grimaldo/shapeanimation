@@ -62,10 +62,12 @@ public class ShapePane extends Pane {
             ft.setAutoReverse(true);
             ft.play();
 
-            Path path = new Path();
+            Path path = new Path(); // path is a series of points
             path.getElements().add(new MoveTo(rand.nextInt(width), rand.nextInt(height)));
             path.getElements().add(new LineTo(rand.nextInt(width), rand.nextInt(height)));
 
+            // can add a CubicCurveTo to the path
+            // like a bezier curve that take in sseveral points and calculate sthe curved path to reach the connection
             path.getElements().add(new CubicCurveTo(rand.nextInt(width), rand.nextInt(height), rand.nextInt(width), rand.nextInt(height), 
             width / 2, height / 2));
             path.getElements().add(new ClosePath());
@@ -74,12 +76,21 @@ public class ShapePane extends Pane {
             pt.setAutoReverse(true);
             pt.play();
 
+            // smoot transition from one color fill t another
+            // to build; instantiate a transition object to be animated as an attirbute
             FillTransition fillt = new FillTransition(Duration.millis(5000),
                     shape, (Color) shape.getFill(),
                     shapeList.randomColor());
+            // set the properties of the transition
             fillt.setAutoReverse(true);
             fillt.setCycleCount(FillTransition.INDEFINITE);
+            // tel the transition to start
             fillt.play();
+
+            
+
+
+
         }
     }
 
